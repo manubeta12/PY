@@ -1,9 +1,6 @@
-class fecha_nacido:
+class Fecha:
     dia= ""
     mes= ""
     anio= ""
-class fecha_ingreso:
-    dia= ""
-    mes= ""
-    anio= ""
+
 #Aqui va el codigo del empleado
