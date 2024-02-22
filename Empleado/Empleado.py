@@ -28,4 +28,11 @@ class empleado:
     
     def ConsultarNombreCompleto(self):
         #Aqui va el codigo del metodo 
-        return self.NombreaCompleto 
+        return self.nombre+" "+self.apellido
+    
+    def AumentoSalario(self):
+        nSalario= self.salario * 00.5
+        nSalario= nSalario + self.salario
+        self.salario=nSalario
+        return "El nuevo salario es de:"+self.salario
+    
