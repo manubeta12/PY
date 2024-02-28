@@ -12,6 +12,7 @@ def RetirarValor(self):
     return" El nuevo saldo menos el valor retirado es" + self.saldo 
 def InteresMensual (self):
     nSaldo= self.saldo * 0.6
+    nSaldo= self.saldo + nSaldo
     self.saldo = nSaldo
     return" El nuevo saldo mas el inetres mensual es" + self.saldo
 
