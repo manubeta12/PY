@@ -2,47 +2,59 @@ from CuentaAhorro import CuentaAhorro
 from CuentaCorriente import CuentaCorriente
 from CDT import CDT
 
-class SimulacroBancario:
-    # Aqui va el codigo de SimuladorBancario
-    # Atributos
-
-    Cedula=""
-    nombres=""
-    MesActual=""
-
+class SimuladorBancario:
+    
+    cedula=''
+    nombres=''
+    mesActual=''
+    
     # Asociaciones
-
-    SaldoCorriente = CuentaCorriente()
-    SaldoAhorro = CuentaAhorro()
-    CDT = CDT()
+    
+    corriente = CuentaCorriente()
+    ahorros = CuentaAhorro()
+    cdt = CDT()
     
     # Metodos
+    
+    def ConsignarCuentaCorriente(self, monto):
+        self.corriente.ConsignarMonto(monto)
+        
+    def CalcularSaldoTotal(self):
+        # Forma1
+        return self.corriente.ConsultarSaldo()+self.ahorros.ConsultarSaldo()
 
-    def ConsignarCorriente(self,saldo):
-    # Aqui va el codigo del metodo
-        return self.SaldoCorriente.ConsignarValor(saldo)
-    
-    def CalcularSaldos(self):
-    # Aqui va el codigo del metodo
-        return"su saldo total es:"(self.SaldoAhorro.saldo+self.SaldoCorriente.saldo)
-    
-    def PasarSaldo(self):
-        self.CuentaCorriente= self.SaldoAhorro + self. SaldoCorriente
-        return self.SaldoAhorro
+        # #Forma2
+        # saldoAhorros = self.ahorros.ConsultarSaldo()
+        # saldoCorriente = self.corriente.ConsultarSaldo()
+        # return saldoAhorros+saldoCorriente
+        
+    def PasarAhorrosACorriente(self):
+        # forma1
+        # self.corriente.ConsignarMonto(self.ahorros.ConsultarSaldo())
+        # self.ahorros.RetirarMonto(self.ahorros.ConsultarSaldo())
+        
+        # forma 2
+        # saldoAhorros = self.ahorros.ConsultarSaldo()
+        # self.ConsignarCuentaCorriente(saldoAhorros)
+        # self.ahorros.RetirarMonto(self, saldoAhorros)
+        
+        #forma 3
+        saldoAhorros = self.ahorros.ConsultarSaldo()
+        self.corriente.saldo += saldoAhorros
+        self.ahorros.saldo = 0
 
     def ConsultarSaldoCorriente(self):
-        # Aqui va el codigo del metodo
-        return self.SaldoCorriente.saldo()
+        return "Tu saldo es"+self.corriente.ConsultarSaldo()
+    
+    def DuplicarAhorro(self):
+        self.ahorros.ConsigarMonto(self.ahorros.ConsultarSaldo())
 
     def RetirarTodo(self):
-        # Aqui va el codigo del metodo
-        return":"(self.SaldoCorriente.saldo-self.SaldoAhorro.saldo-self.CDT.saldo)
-    
-    def DuplicarTodo(self):
-        # Aqui va el codigo del metodo
-        nahorro= self.CuentaAhorro.saldo *2
-        return"Su ahoro es" + nahorro
-
+        total = self.CalcularSaldoTotal
+        self.corriente.RetirarMonto(self.corriente.ConsultarSaldo())
+        self.ahorros.RetirarMonto(self.ahorros.ConsultarSaldo())
+        return"Retiraste total:"+ total
+        
 
 
         
